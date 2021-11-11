@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Satellite
+  - SatellitePickup
+  - MissionControl
+  - SpeedDecrease
+  - SpeedIncrease
   layers:
   - Default
   - TransparentFX
