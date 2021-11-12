@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5527db8e2a8f6532089b6003d68c5a86, type: 3}
+  m_Name: question5
+  m_EditorClassIdentifier: 
+  question: Last thing I remember, was that I was at the ferris wheel in the park.
+    Can you see it?
+  answers:
+  - Can someone reboot this?
+  - I don't see anything.
+  - There's a paramedics team.
+  - Ferris wheel is still closed, the accident, you know.
+  rightAnswerIndex: 3
