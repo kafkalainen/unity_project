@@ -9,14 +9,14 @@ public class CrashDetector : MonoBehaviour
     [SerializeField] private float levelLoadDelay = 0.5f;
     [SerializeField] ParticleSystem crashEffect;
     [SerializeField] AudioClip crashSFX;
-    private bool playerWon = false;
+    private bool hasCrashed = false;
 
     // We can also find objects by serializing them.
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Ground" && !playerWon)
+        if (other.tag == "Ground" && !hasCrashed)
         {
-            playerWon = true;
+            hasCrashed = true;
             FindObjectOfType<PlayerController>().DisableControls();
             crashEffect.Play();
             GetComponent<AudioSource>().PlayOneShot(crashSFX);
@@ -26,6 +26,7 @@ public class CrashDetector : MonoBehaviour
 
     private void ReloadScene()
     {
+        hasCrashed = false;
         SceneManager.LoadScene(0);
     }
 }
