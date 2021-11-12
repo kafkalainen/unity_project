@@ -8,6 +8,7 @@ public class CrashDetector : MonoBehaviour
 {
     [SerializeField] private float levelLoadDelay = 0.5f;
     [SerializeField] ParticleSystem crashEffect;
+    [SerializeField] AudioClip crashSFX;
 
     // We can also find objects by serializing them.
     private void OnTriggerEnter2D(Collider2D other)
@@ -15,6 +16,7 @@ public class CrashDetector : MonoBehaviour
         if (other.tag == "Ground")
         {
             crashEffect.Play();
+            GetComponent<AudioSource>().PlayOneShot(crashSFX);
             Invoke("ReloadScene", levelLoadDelay);
         }
     }
