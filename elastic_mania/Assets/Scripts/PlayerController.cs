@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float baseSpeed = 20.0f;
     private Rigidbody2D rb2d;
     private SurfaceEffector2D surfaceEffector2D;
+    private bool canMove = true;
 
     // Start is called before the first frame update
     // We can use GetComponent to fetch components
@@ -18,12 +19,20 @@ public class PlayerController : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         surfaceEffector2D = FindObjectOfType<SurfaceEffector2D>();
     }
-
+    // If variables are made public, they can be accessed by the editor.
+    // Public methods can be called by other classes, if you first find the object.
+    public void DisableControls()
+    {
+        canMove = false;
+    }
     // Update is called once per frame
     void Update()
     {
-        RotatePlayer();
-        RespondToBoost();
+        if (canMove)
+        {
+            RotatePlayer();
+            RespondToBoost();
+        }
     }
 
     private void RotatePlayer()
