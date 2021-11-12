@@ -13,6 +13,12 @@
 - Effector
 - Torque
 
+## quizzer
+- Canvas editing
+- TextMeshPro
+- Prefabs
+- Scriptable Objects
+
 ## Biggest blocks
 - Use Screen x and screen y to control the virtual camera position.
 
