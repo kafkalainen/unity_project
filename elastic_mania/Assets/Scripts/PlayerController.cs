@@ -33,6 +33,10 @@ public class PlayerController : MonoBehaviour
             RotatePlayer();
             RespondToBoost();
         }
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 
     private void RotatePlayer()
