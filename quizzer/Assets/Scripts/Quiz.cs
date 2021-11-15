@@ -16,6 +16,11 @@ public class Quiz : MonoBehaviour
 
     void Start()
     {
+        GetNextQuestion();
+    }
+
+    public void DisplayQuestion()
+    {
         questionText.text = question.GetQuestion();
         for (int i = 0; i < answerButtons.Length; i++)
         {
@@ -26,16 +31,41 @@ public class Quiz : MonoBehaviour
 
     public void OnAnswerSelected(int index)
     {
-        if (index == question.GetCorrectAnswerIndex())
-        {
+        int correctAnswer = question.GetCorrectAnswerIndex();
+        if (index == correctAnswer)
             questionText.text = "Correct!";
-            Image buttonImage = answerButtons[index].GetComponent<Image>();
-            buttonImage.sprite = correctAnswerSprite;
+        else
+        {
+            string correctAnswerStr = question.GetAnswer(correctAnswer);
+            questionText.text =
+                "Wrong! Correct answer is: \n" + correctAnswerStr;
+        }
+        Image buttonImage = answerButtons[correctAnswer].GetComponent<Image>();
+        buttonImage.sprite = correctAnswerSprite;
+        SetAnswerButtonState(false);
+    }
+    public void GetNextQuestion()
+    {
+        SetAnswerButtonState(true);
+        SetDefaultButtonSprites();
+        DisplayQuestion();
+    }
+
+    public void SetAnswerButtonState(bool state)
+    {
+        for (int i = 0; i < answerButtons.Length; i++)
+        {
+            Button button = answerButtons[i].GetComponent<Button>();
+            button.interactable = state;
         }
     }
 
-    void Update()
+    public void SetDefaultButtonSprites()
     {
-
+        for (int i = 0; i < answerButtons.Length; i++)
+        {
+            Image buttonImage = answerButtons[i].GetComponent<Image>();
+            buttonImage.sprite = defaultAnswerSprite;
+        }
     }
 }

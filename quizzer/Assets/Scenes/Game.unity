@@ -382,8 +382,8 @@ MonoBehaviour:
   - {fileID: 1528908180}
   - {fileID: 1050776356}
   - {fileID: 906429241}
-  defaultAnswerSprite: {fileID: 0}
-  correctAnswerSprite: {fileID: 0}
+  defaultAnswerSprite: {fileID: 21300000, guid: a9ea4168cddb5ce4aa1d76bdd5545cd5, type: 3}
+  correctAnswerSprite: {fileID: 21300000, guid: c51c3551f6af7e440a06752360608b03, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

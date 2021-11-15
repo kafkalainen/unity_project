@@ -2,9 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-using UnityEngine;
-
 [CreateAssetMenu(fileName = "newQuestion", menuName = "QuizQuestion", order = 0)]
 public class QuestionSO : ScriptableObject
 {
