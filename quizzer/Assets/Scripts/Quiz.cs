@@ -57,6 +57,7 @@ public class Quiz : MonoBehaviour
             DisplayAnswer(-1);
             SetAnswerButtonState(false);
         }
+        else if (Input.KeyCode.Escape )
     }
 
     public void DisplayQuestion()
