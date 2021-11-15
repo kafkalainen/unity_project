@@ -6,17 +6,40 @@ using TMPro;
 
 public class Quiz : MonoBehaviour
 {
+    [Header("Questions")]
     [SerializeField] TextMeshProUGUI questionText;
     [SerializeField] QuestionSO question;
+    [Header("Answers")]
     [SerializeField] GameObject[] answerButtons;
-
     int correctAnswerIndex;
+    bool hasAnsweredEarly;
+    [Header("Button Colours")]
     [SerializeField] Sprite defaultAnswerSprite;
     [SerializeField] Sprite correctAnswerSprite;
+    [Header("Timer")]
+    [SerializeField] Image timerImage;
+    Timer timer;
 
     void Start()
     {
+        timer = FindObjectOfType<Timer>();
         GetNextQuestion();
+    }
+
+    private void Update()
+    {
+        timerImage.fillAmount = timer.fillFraction;
+        if (timer.loadNextQuestion)
+        {
+            hasAnsweredEarly = false;
+            GetNextQuestion();
+            timer.loadNextQuestion = false;
+        }
+        else if (!hasAnsweredEarly && !timer.isAnsweringQuestion)
+        {
+            DisplayAnswer(-1);
+            SetAnswerButtonState(false);
+        }
     }
 
     public void DisplayQuestion()
@@ -31,6 +54,14 @@ public class Quiz : MonoBehaviour
 
     public void OnAnswerSelected(int index)
     {
+        hasAnsweredEarly = true;
+        DisplayAnswer(index);
+        SetAnswerButtonState(false);
+        timer.CancelTimer();
+    }
+
+    public void DisplayAnswer(int index)
+    {
         int correctAnswer = question.GetCorrectAnswerIndex();
         if (index == correctAnswer)
             questionText.text = "Correct!";
@@ -42,7 +73,6 @@ public class Quiz : MonoBehaviour
         }
         Image buttonImage = answerButtons[correctAnswer].GetComponent<Image>();
         buttonImage.sprite = correctAnswerSprite;
-        SetAnswerButtonState(false);
     }
     public void GetNextQuestion()
     {
