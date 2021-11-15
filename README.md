@@ -1,19 +1,33 @@
 # Unity Course Projects - Several games
 
 ## fetch_quest
+ <img src="md_assets/fetch_quest.gif" alt="fetch_quest" width="198" height="108">
+
 - Triggers
 - Colliders
 - Unity basic methods
 - How Unity works
 
 ## elastic_mania
+ <img src="md_assets/elastic_mania.gif" alt="elastic_mania" width="198" height="108">
+
+Snowboarding game with cool pixel graphics of my own.
+
 - Edge colliders
 - Virtual camera
+- Profiles
 - Empty objects
 - Effector
 - Torque
+- Particle effects
+- Win and lose conditions
+- Sound effects and sound listeners
 
 ## quizzer
+ <img src="md_assets/quizzer.gif" alt="elastic_mania" width="198" height="108">
+
+A regular quiz app with not so regular backstory.
+
 - Using previsualization canvas
 - Canvas editing
 - TextMeshPro
