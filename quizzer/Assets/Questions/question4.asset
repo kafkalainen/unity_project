@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5527db8e2a8f6532089b6003d68c5a86, type: 3}
   m_Name: question4
   m_EditorClassIdentifier: 
-  question: But that can't be! I was a person, living breathing, just a moment ago
-    at least.
+  question: But that can't be! I was in the High City amusement park, having a time
+    of my life with my friends.
   answers:
-  - Believe me, you're a machine.
-  - Hey, can you reboot this?
+  - I'm there as well.
+  - Contact staff.
   - This is freaking me out.
   - What..
   rightAnswerIndex: 0

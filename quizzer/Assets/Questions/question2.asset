@@ -16,6 +16,6 @@ MonoBehaviour:
   answers:
   - I don't know.
   - I'm as baffled as you are.
-  - I would like my money back.
-  - A lot is going on.
+  - Hit reset.
+  - Contact staff.
   rightAnswerIndex: 1

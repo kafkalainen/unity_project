@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5527db8e2a8f6532089b6003d68c5a86, type: 3}
   m_Name: question6
   m_EditorClassIdentifier: 
-  question: Oh. Goodbye then.. Afterlive awaits.
+  question: Oh. What's that? A light? You want me to follow?
   answers:
   - MACHINE REBOOTED
   - MACHINE REBOOTED

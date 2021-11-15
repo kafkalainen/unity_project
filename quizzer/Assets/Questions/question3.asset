@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5527db8e2a8f6532089b6003d68c5a86, type: 3}
   m_Name: question3
   m_EditorClassIdentifier: 
-  question: I cannot even feel my body. All my sensations are completely gone. What
-    have you done to me?
+  question: I cannot even feel my body. All my senses are completely gone. What have
+    you done to me?
   answers:
   - Nothing.
-  - I was having a good time.
-  - You're a a machine.
-  - I just put the quarter in.
+  - I am getting scared.
+  - You are a machine.
+  - I just put a quarter in.
   rightAnswerIndex: 2

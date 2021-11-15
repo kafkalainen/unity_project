@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   question: What.. Who.. Who am I?
   answers:
-  - I don't know.
-  - Rick from my neighbour.
-  - Quizzer.
-  - Q&A.
+  - I don't know
+  - Rick from my neighbour
+  - Quizzer
+  - Q&A
   rightAnswerIndex: 0
