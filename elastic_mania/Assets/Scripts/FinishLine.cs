@@ -19,7 +19,6 @@ public class FinishLine : MonoBehaviour
 
     private void ReloadScene()
     {
-        playerWon = false;
         SceneManager.LoadScene(0);
     }
 }
