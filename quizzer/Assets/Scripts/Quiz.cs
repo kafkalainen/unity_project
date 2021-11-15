@@ -8,7 +8,9 @@ public class Quiz : MonoBehaviour
 {
     [Header("Questions")]
     [SerializeField] TextMeshProUGUI questionText;
-    [SerializeField] QuestionSO question;
+    [SerializeField] List<QuestionSO> questions = new List<QuestionSO>();
+    QuestionSO currentQuestion;
+
     [Header("Answers")]
     [SerializeField] GameObject[] answerButtons;
     int correctAnswerIndex;
@@ -19,11 +21,21 @@ public class Quiz : MonoBehaviour
     [Header("Timer")]
     [SerializeField] Image timerImage;
     Timer timer;
+    [Header("Scoring")]
+    [SerializeField] TextMeshProUGUI scoreText;
+    ScoreKeeper scoreKeeper;
+
+    [Header("Scoring")]
+    [SerializeField] Slider progressBar;
+
+    public bool isComplete;
 
     void Start()
     {
         timer = FindObjectOfType<Timer>();
-        GetNextQuestion();
+        scoreKeeper = FindObjectOfType<ScoreKeeper>();
+        progressBar.maxValue = questions.Count;
+        progressBar.value = 0;
     }
 
     private void Update()
@@ -44,11 +56,11 @@ public class Quiz : MonoBehaviour
 
     public void DisplayQuestion()
     {
-        questionText.text = question.GetQuestion();
+        questionText.text = currentQuestion.GetQuestion();
         for (int i = 0; i < answerButtons.Length; i++)
         {
             TextMeshProUGUI buttonText = answerButtons[i].GetComponentInChildren<TextMeshProUGUI>();
-            buttonText.text = question.GetAnswer(i);
+            buttonText.text = currentQuestion.GetAnswer(i);
         }
     }
 
@@ -58,16 +70,24 @@ public class Quiz : MonoBehaviour
         DisplayAnswer(index);
         SetAnswerButtonState(false);
         timer.CancelTimer();
+        scoreText.text = "Score:\n" + scoreKeeper.GetCurrentScore() + "%";
+        if (progressBar.value >= progressBar.maxValue)
+        {
+            isComplete = true;
+        }
     }
 
     public void DisplayAnswer(int index)
     {
-        int correctAnswer = question.GetCorrectAnswerIndex();
+        int correctAnswer = currentQuestion.GetCorrectAnswerIndex();
         if (index == correctAnswer)
+        {
             questionText.text = "Correct!";
+            scoreKeeper.IncrementCorrectAnswers();
+        }
         else
         {
-            string correctAnswerStr = question.GetAnswer(correctAnswer);
+            string correctAnswerStr = currentQuestion.GetAnswer(correctAnswer);
             questionText.text =
                 "Wrong! Correct answer is: \n" + correctAnswerStr;
         }
@@ -76,11 +96,31 @@ public class Quiz : MonoBehaviour
     }
     public void GetNextQuestion()
     {
-        SetAnswerButtonState(true);
-        SetDefaultButtonSprites();
-        DisplayQuestion();
+        if (questions.Count > 0)
+        {
+            SetAnswerButtonState(true);
+            SetDefaultButtonSprites();
+            GetQuestionFromList();
+            DisplayQuestion();
+            progressBar.value++;
+            scoreKeeper.IncrementSeenQuestions();
+        }
     }
 
+    //GetRandomQuestion()
+    // int index = Random.Range(0, questions.Count);
+    // currentQuestion = questions[index];
+    // if (questions.Contains(currentQuestion))
+    // {
+    //     questions.Remove(currentQuestion);
+    // }
+
+    void GetQuestionFromList()
+    {
+        currentQuestion = questions[0];
+        if (questions.Count > 0)
+            questions.RemoveAt(0);
+    }
     public void SetAnswerButtonState(bool state)
     {
         for (int i = 0; i < answerButtons.Length; i++)
