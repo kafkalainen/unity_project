@@ -7,12 +7,10 @@ public class FinishLine : MonoBehaviour
 {
     [SerializeField] private float delayTime = 0.5f;
     [SerializeField] ParticleSystem finishEffect;
-    private bool playerWon = false;
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Player" && !playerWon)
+        if (other.tag == "Player")
         {
-            playerWon = true;
             finishEffect.Play();
             GetComponent<AudioSource>().Play();
             Invoke("ReloadScene", delayTime);
