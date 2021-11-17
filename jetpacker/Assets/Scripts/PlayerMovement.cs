@@ -5,11 +5,14 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 	Rigidbody rb;
+
+	AudioSource audioSource;
 	[SerializeField] float thrusterForce = 15.0f;
 	[SerializeField] float rotationSpeed = 30.0f;
 	void Start()
 	{
 		rb = GetComponent<Rigidbody>();
+		audioSource = GetComponent<AudioSource>();
 	}
 
 	/*
@@ -22,7 +25,15 @@ public class PlayerMovement : MonoBehaviour
 	{
 		if (Input.GetKey(KeyCode.Space))
 		{
+			if (!audioSource.isPlaying)
+			{
+				audioSource.Play();
+			}
 			rb.AddRelativeForce(Vector3.up * thrusterForce * Time.fixedDeltaTime);
+		}
+		else
+		{
+			audioSource.Stop();
 		}
 	}
 
@@ -33,12 +44,15 @@ public class PlayerMovement : MonoBehaviour
 	**	Quaternion deltaRotation = Quaternion.Euler(
 						Vector3.forward * rotationThisFrame * Time.fixedDeltaTime);
 	**	rb.MoveRotation(rb.rotation * deltaRotation);
+	** rb.freezeRotation = true;
+	**	transform.Rotate(Vector3.forward * rotationThisFrame * Time.fixedDeltaTime);
+	**	rb.freezeRotation = false;
 	*/
 	void ApplyRotation(float rotationThisFrame)
 	{
-		rb.freezeRotation = true;
-		transform.Rotate(Vector3.forward * rotationThisFrame * Time.fixedDeltaTime);
-		rb.freezeRotation = false;
+		Quaternion deltaRotation = Quaternion.Euler(
+						this.transform.forward * rotationThisFrame * Time.fixedDeltaTime);
+		rb.MoveRotation(rb.rotation * deltaRotation);
 	}
 	void ProcessTurn()
 	{

@@ -103,7 +103,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1463838117058303775, guid: 1058bcaf4ff748c278d512a753308983, type: 3}
       propertyPath: m_Name
-      value: Landing platform
+      value: End platform
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463838117058303775, guid: 1058bcaf4ff748c278d512a753308983, type: 3}
+      propertyPath: m_TagString
+      value: Finish
+      objectReference: {fileID: 0}
+    - target: {fileID: 1988873987271138585, guid: 1058bcaf4ff748c278d512a753308983, type: 3}
+      propertyPath: m_TagString
+      value: Finish
+      objectReference: {fileID: 0}
+    - target: {fileID: 7437463316824362962, guid: 1058bcaf4ff748c278d512a753308983, type: 3}
+      propertyPath: m_TagString
+      value: Finish
       objectReference: {fileID: 0}
     - target: {fileID: 8020712942835201715, guid: 1058bcaf4ff748c278d512a753308983, type: 3}
       propertyPath: m_RootOrder
@@ -148,6 +160,10 @@ PrefabInstance:
     - target: {fileID: 8020712942835201715, guid: 1058bcaf4ff748c278d512a753308983, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8267996617613841646, guid: 1058bcaf4ff748c278d512a753308983, type: 3}
+      propertyPath: m_TagString
+      value: Finish
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1058bcaf4ff748c278d512a753308983, type: 3}
