@@ -9,6 +9,8 @@ public class CollisionHandler : MonoBehaviour
     [SerializeField] AudioClip crashSFX;
     [SerializeField] AudioClip successSFX;
     [SerializeField] ParticleSystem setOnFire;
+
+    [SerializeField] ParticleSystem successBeam;
     PlayerMovement playerMovement;
     AudioSource audioSource;
 
@@ -60,6 +62,7 @@ public class CollisionHandler : MonoBehaviour
     {
 
         isTransitioning = true;
+        successBeam.Play();
         audioSource.PlayOneShot(successSFX);
         playerMovement.enabled = false;
         Invoke("LoadNextLevel", reloadTime);

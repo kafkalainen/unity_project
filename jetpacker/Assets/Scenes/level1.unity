@@ -123,9 +123,9 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!198 &650488490 stripped
+--- !u!198 &560438063 stripped
 ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 650488490, guid: 8673472c9e12d671980a0d2fbdd54ffe, type: 3}
+  m_CorrespondingSourceObject: {fileID: 868138455593629814, guid: 8673472c9e12d671980a0d2fbdd54ffe, type: 3}
   m_PrefabInstance: {fileID: 753519943651714858}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &705507993
@@ -222,6 +222,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: 90, z: 0}
+--- !u!198 &777070445 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7354974225383788704, guid: 8673472c9e12d671980a0d2fbdd54ffe, type: 3}
+  m_PrefabInstance: {fileID: 753519943651714858}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -611,34 +616,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 650488490, guid: 8673472c9e12d671980a0d2fbdd54ffe, type: 3}
-      propertyPath: ShapeModule.type
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 650488490, guid: 8673472c9e12d671980a0d2fbdd54ffe, type: 3}
-      propertyPath: ShapeModule.radiusThickness
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 650488490, guid: 8673472c9e12d671980a0d2fbdd54ffe, type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 650488490, guid: 8673472c9e12d671980a0d2fbdd54ffe, type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 1767392665, guid: 8673472c9e12d671980a0d2fbdd54ffe, type: 3}
-      propertyPath: m_RenderAlignment
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1767392666, guid: 8673472c9e12d671980a0d2fbdd54ffe, type: 3}
-      propertyPath: moveWithTransform
-      value: 1
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 753519943414910360, guid: 8673472c9e12d671980a0d2fbdd54ffe, type: 3}
-      propertyPath: thrusterJet
+      propertyPath: leftThruster
+      value: 
+      objectReference: {fileID: 777070445}
+    - target: {fileID: 753519943414910360, guid: 8673472c9e12d671980a0d2fbdd54ffe, type: 3}
+      propertyPath: mainThruster
       value: 
       objectReference: {fileID: 1767392666}
+    - target: {fileID: 753519943414910360, guid: 8673472c9e12d671980a0d2fbdd54ffe, type: 3}
+      propertyPath: rightThruster
+      value: 
+      objectReference: {fileID: 560438063}
     - target: {fileID: 753519943414910362, guid: 8673472c9e12d671980a0d2fbdd54ffe, type: 3}
       propertyPath: m_Name
       value: Rocket
@@ -687,10 +680,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2003645564957703488, guid: 8673472c9e12d671980a0d2fbdd54ffe, type: 3}
-      propertyPath: setOnFire
-      value: 
-      objectReference: {fileID: 650488490}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8673472c9e12d671980a0d2fbdd54ffe, type: 3}
 --- !u!1001 &3253063986554795684

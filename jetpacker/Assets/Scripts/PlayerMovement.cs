@@ -10,7 +10,10 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField] AudioClip thrusterSFX;
 	[SerializeField] float thrusterForce = 15.0f;
 	[SerializeField] float rotationSpeed = 30.0f;
-	[SerializeField] ParticleSystem thrusterJet;
+	[SerializeField] ParticleSystem mainThruster;
+	[SerializeField] ParticleSystem leftThruster;
+	[SerializeField] ParticleSystem rightThruster;
+
 	void Start()
 	{
 		rb = GetComponent<Rigidbody>();
@@ -31,16 +34,30 @@ public class PlayerMovement : MonoBehaviour
 			{
 				audioSource.PlayOneShot(thrusterSFX);
 			}
-			if (!thrusterJet.isEmitting)
+			if (!mainThruster.isEmitting)
 			{
-				thrusterJet.Play();
+				mainThruster.Play();
 			}
 			rb.AddRelativeForce(Vector3.up * thrusterForce * Time.fixedDeltaTime);
 		}
 		else
 		{
-			thrusterJet.Stop();
+			mainThruster.Stop();
 			audioSource.Stop();
+		}
+	}
+
+	void ActivateThrusters(float rotationThisFrame)
+	{
+		if (rotationThisFrame > 0)
+		{
+			if (!leftThruster.isEmitting)
+				leftThruster.Play();
+		}
+		else
+		{
+			if (!rightThruster.isEmitting)
+				rightThruster.Play();
 		}
 	}
 
@@ -60,6 +77,7 @@ public class PlayerMovement : MonoBehaviour
 		Quaternion deltaRotation = Quaternion.Euler(
 						this.transform.forward * rotationThisFrame * Time.fixedDeltaTime);
 		rb.MoveRotation(rb.rotation * deltaRotation);
+		ActivateThrusters(rotationThisFrame);
 	}
 	void ProcessTurn()
 	{
@@ -70,6 +88,11 @@ public class PlayerMovement : MonoBehaviour
 		else if (Input.GetKey(KeyCode.D))
 		{
 			ApplyRotation(-rotationSpeed);
+		}
+		else
+		{
+			leftThruster.Stop();
+			rightThruster.Stop();
 		}
 	}
 
