@@ -5,12 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class CollisionHandler : MonoBehaviour
 {
-    PlayerMovement playerMovement;
-    AudioSource audioSource;
-    ParticleSystem setOnFire;
     [SerializeField] float reloadTime = 1.0f;
     [SerializeField] AudioClip crashSFX;
     [SerializeField] AudioClip successSFX;
+    [SerializeField] ParticleSystem setOnFire;
+    PlayerMovement playerMovement;
+    AudioSource audioSource;
 
     bool isTransitioning = false;
 
@@ -19,7 +19,6 @@ public class CollisionHandler : MonoBehaviour
         isTransitioning = false;
         playerMovement = GetComponent<PlayerMovement>();
         audioSource = GetComponent<AudioSource>();
-        setOnFire = FindObjectOfType<ParticleSystem>();
     }
 
     void LoadLevel(int desiredScene)

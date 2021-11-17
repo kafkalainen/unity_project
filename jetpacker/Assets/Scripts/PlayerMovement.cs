@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField] AudioClip thrusterSFX;
 	[SerializeField] float thrusterForce = 15.0f;
 	[SerializeField] float rotationSpeed = 30.0f;
+	[SerializeField] ParticleSystem thrusterJet;
 	void Start()
 	{
 		rb = GetComponent<Rigidbody>();
@@ -30,10 +31,15 @@ public class PlayerMovement : MonoBehaviour
 			{
 				audioSource.PlayOneShot(thrusterSFX);
 			}
+			if (!thrusterJet.isEmitting)
+			{
+				thrusterJet.Play();
+			}
 			rb.AddRelativeForce(Vector3.up * thrusterForce * Time.fixedDeltaTime);
 		}
 		else
 		{
+			thrusterJet.Stop();
 			audioSource.Stop();
 		}
 	}
