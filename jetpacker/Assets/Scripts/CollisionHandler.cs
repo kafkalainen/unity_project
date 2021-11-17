@@ -6,11 +6,17 @@ using UnityEngine.SceneManagement;
 public class CollisionHandler : MonoBehaviour
 {
     PlayerMovement playerMovement;
+    AudioSource audioSource;
+    ParticleSystem setOnFire;
     [SerializeField] float reloadTime = 1.0f;
+    [SerializeField] AudioClip crashSFX;
+    [SerializeField] AudioClip successSFX;
 
     void Start()
     {
         playerMovement = GetComponent<PlayerMovement>();
+        audioSource = GetComponent<AudioSource>();
+        setOnFire = FindObjectOfType<ParticleSystem>();
     }
 
     void LoadLevel(int desiredScene)
@@ -40,15 +46,24 @@ public class CollisionHandler : MonoBehaviour
 
     void StartCrashSequence()
     {
+        setOnFire.Play();
+        audioSource.PlayOneShot(crashSFX);
         playerMovement.enabled = false;
         Invoke("ReloadLevel", reloadTime);
+    }
+
+    void StartSuccessSequence()
+    {
+        audioSource.PlayOneShot(crashSFX);
+        playerMovement.enabled = false;
+        Invoke("LoadNextLevel", reloadTime);
     }
     void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.tag == "Friendly")
             Debug.Log("Friendly!");
         else if (other.gameObject.tag == "Finish")
-            LoadNextLevel();
+            StartSuccessSequence();
         else if (other.gameObject.tag == "Untagged")
             StartCrashSequence();
     }

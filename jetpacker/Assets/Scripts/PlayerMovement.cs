@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
 	Rigidbody rb;
 
 	AudioSource audioSource;
+	[SerializeField] AudioClip thrusterSFX;
 	[SerializeField] float thrusterForce = 15.0f;
 	[SerializeField] float rotationSpeed = 30.0f;
 	void Start()
@@ -27,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
 		{
 			if (!audioSource.isPlaying)
 			{
-				audioSource.Play();
+				audioSource.PlayOneShot(thrusterSFX);
 			}
 			rb.AddRelativeForce(Vector3.up * thrusterForce * Time.fixedDeltaTime);
 		}
