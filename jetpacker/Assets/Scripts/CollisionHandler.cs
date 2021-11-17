@@ -5,11 +5,23 @@ using UnityEngine.SceneManagement;
 
 public class CollisionHandler : MonoBehaviour
 {
+    PlayerMovement playerMovement;
+    [SerializeField] float reloadTime = 1.0f;
+
+    void Start()
+    {
+        playerMovement = GetComponent<PlayerMovement>();
+    }
 
     void LoadLevel(int desiredScene)
     {
-        if (SceneManager.sceneCountInBuildSettings < desiredScene + 1)
+        Debug.Log("Before boolean: " + desiredScene);
+        Debug.Log(SceneManager.sceneCountInBuildSettings);
+        if (desiredScene < SceneManager.sceneCountInBuildSettings)
+        {
+            Debug.Log(desiredScene);
             SceneManager.LoadScene(desiredScene);
+        }
     }
 
     void LoadNextLevel()
@@ -22,7 +34,14 @@ public class CollisionHandler : MonoBehaviour
     void ReloadLevel()
     {
         int currentScene = SceneManager.GetActiveScene().buildIndex;
+        Debug.Log(currentScene);
         LoadLevel(currentScene);
+    }
+
+    void StartCrashSequence()
+    {
+        playerMovement.enabled = false;
+        Invoke("ReloadLevel", reloadTime);
     }
     void OnCollisionEnter(Collision other)
     {
@@ -31,6 +50,6 @@ public class CollisionHandler : MonoBehaviour
         else if (other.gameObject.tag == "Finish")
             LoadNextLevel();
         else if (other.gameObject.tag == "Untagged")
-            ReloadLevel();
+            StartCrashSequence();
     }
 }
