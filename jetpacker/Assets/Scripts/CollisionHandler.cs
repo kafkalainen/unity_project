@@ -37,7 +37,6 @@ public class CollisionHandler : MonoBehaviour
 
     void LoadLevel(int desiredScene)
     {
-        Debug.Log("Before boolean: " + desiredScene);
         Debug.Log(SceneManager.sceneCountInBuildSettings);
         if (desiredScene < SceneManager.sceneCountInBuildSettings)
         {

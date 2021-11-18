@@ -8,7 +8,6 @@ public class ActionKeyHandler : MonoBehaviour
     bool    collisionsEnabled = true;
     bool    initiateLevelChange = false;
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.C))
