@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class MusicHandler : MonoBehaviour
 {
-    [SerializeField] AudioClip music;
     AudioSource[] audioSources;
     ActionKeyHandler actionKeyHandler;
 

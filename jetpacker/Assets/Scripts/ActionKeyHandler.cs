@@ -23,6 +23,10 @@ public class ActionKeyHandler : MonoBehaviour
         {
             isPlayingMusic = !isPlayingMusic;
         }
+        else if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 
     public bool IsPlayingMusic()
