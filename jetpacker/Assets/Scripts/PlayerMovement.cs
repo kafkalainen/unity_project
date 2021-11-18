@@ -30,10 +30,6 @@ public class PlayerMovement : MonoBehaviour
 	{
 		if (Input.GetKey(KeyCode.Space))
 		{
-			if (!audioSource.isPlaying)
-			{
-				audioSource.PlayOneShot(thrusterSFX);
-			}
 			if (!mainThruster.isEmitting)
 			{
 				mainThruster.Play();
@@ -43,6 +39,22 @@ public class PlayerMovement : MonoBehaviour
 		else
 		{
 			mainThruster.Stop();
+		}
+	}
+
+	void playAudio()
+	{
+		if (mainThruster.isEmitting
+			|| leftThruster.isEmitting
+			|| rightThruster.isEmitting)
+		{
+			if (!audioSource.isPlaying)
+			{
+				audioSource.PlayOneShot(thrusterSFX);
+			}
+		}
+		else
+		{
 			audioSource.Stop();
 		}
 	}
@@ -101,5 +113,6 @@ public class PlayerMovement : MonoBehaviour
 	{
 		ProcessThrust();
 		ProcessTurn();
+		playAudio();
 	}
 }
