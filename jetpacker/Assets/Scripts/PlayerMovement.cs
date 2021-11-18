@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
 	Rigidbody rb;
 
-	AudioSource audioSource;
+	AudioSource[] audioSources;
 	[SerializeField] AudioClip thrusterSFX;
 	[SerializeField] float thrusterForce = 15.0f;
 	[SerializeField] float rotationSpeed = 30.0f;
@@ -17,9 +17,15 @@ public class PlayerMovement : MonoBehaviour
 	void Start()
 	{
 		rb = GetComponent<Rigidbody>();
-		audioSource = GetComponent<AudioSource>();
+		audioSources = GetComponents<AudioSource>();
 	}
 
+	void Update()
+	{
+		ProcessThrust();
+		ProcessTurn();
+		playThrustingAudio();
+	}
 	/*
 	** It is possible also to use up right forward vectors.
 	** rb.AddForce(this.transform.up * thrusterForce);
@@ -30,11 +36,7 @@ public class PlayerMovement : MonoBehaviour
 	{
 		if (Input.GetKey(KeyCode.Space))
 		{
-			if (!mainThruster.isEmitting)
-			{
-				mainThruster.Play();
-			}
-			rb.AddRelativeForce(Vector3.up * thrusterForce * Time.fixedDeltaTime);
+			StartThrusting();
 		}
 		else
 		{
@@ -42,34 +44,28 @@ public class PlayerMovement : MonoBehaviour
 		}
 	}
 
-	void playAudio()
+	void StartThrusting()
 	{
-		if (mainThruster.isEmitting
-			|| leftThruster.isEmitting
-			|| rightThruster.isEmitting)
+		if (!mainThruster.isEmitting)
 		{
-			if (!audioSource.isPlaying)
-			{
-				audioSource.PlayOneShot(thrusterSFX);
-			}
+			mainThruster.Play();
 		}
-		else
-		{
-			audioSource.Stop();
-		}
+		rb.AddRelativeForce(Vector3.up * thrusterForce * Time.fixedDeltaTime);
 	}
 
-	void ActivateThrusters(float rotationThisFrame)
+	void ProcessTurn()
 	{
-		if (rotationThisFrame > 0)
+		if (Input.GetKey(KeyCode.A))
 		{
-			if (!leftThruster.isEmitting)
-				leftThruster.Play();
+			ApplyRotation(rotationSpeed);
+		}
+		else if (Input.GetKey(KeyCode.D))
+		{
+			ApplyRotation(-rotationSpeed);
 		}
 		else
 		{
-			if (!rightThruster.isEmitting)
-				rightThruster.Play();
+			DisableSideThrusters();
 		}
 	}
 
@@ -91,28 +87,41 @@ public class PlayerMovement : MonoBehaviour
 		rb.MoveRotation(rb.rotation * deltaRotation);
 		ActivateThrusters(rotationThisFrame);
 	}
-	void ProcessTurn()
+
+	private void DisableSideThrusters()
 	{
-		if (Input.GetKey(KeyCode.A))
+		leftThruster.Stop();
+		rightThruster.Stop();
+	}
+
+	void playThrustingAudio()
+	{
+		if (mainThruster.isEmitting
+			|| leftThruster.isEmitting
+			|| rightThruster.isEmitting)
 		{
-			ApplyRotation(rotationSpeed);
-		}
-		else if (Input.GetKey(KeyCode.D))
-		{
-			ApplyRotation(-rotationSpeed);
+			if (!audioSources[0].isPlaying)
+			{
+				audioSources[0].PlayOneShot(thrusterSFX);
+			}
 		}
 		else
 		{
-			leftThruster.Stop();
-			rightThruster.Stop();
+			audioSources[0].Stop();
 		}
 	}
 
-
-	void Update()
+	void ActivateThrusters(float rotationThisFrame)
 	{
-		ProcessThrust();
-		ProcessTurn();
-		playAudio();
+		if (rotationThisFrame > 0)
+		{
+			if (!leftThruster.isEmitting)
+				leftThruster.Play();
+		}
+		else
+		{
+			if (!rightThruster.isEmitting)
+				rightThruster.Play();
+		}
 	}
 }

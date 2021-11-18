@@ -12,7 +12,9 @@ public class CollisionHandler : MonoBehaviour
 
     [SerializeField] ParticleSystem successBeam;
     PlayerMovement playerMovement;
-    AudioSource audioSource;
+    AudioSource[] audioSources;
+
+    ActionKeyHandler actionKeyHandler;
 
     bool isTransitioning = false;
 
@@ -20,7 +22,17 @@ public class CollisionHandler : MonoBehaviour
     {
         isTransitioning = false;
         playerMovement = GetComponent<PlayerMovement>();
-        audioSource = GetComponent<AudioSource>();
+        audioSources = GetComponents<AudioSource>();
+        actionKeyHandler = GetComponent<ActionKeyHandler>();
+    }
+
+    void Update()
+    {
+        if (actionKeyHandler.IsLevelChangeInitialized())
+        {
+            actionKeyHandler.SetLevelChangeInitialized(false);
+            LoadNextLevel();
+        }
     }
 
     void LoadLevel(int desiredScene)
@@ -52,8 +64,8 @@ public class CollisionHandler : MonoBehaviour
     {
         isTransitioning = true;
         setOnFire.Play();
-        audioSource.Stop();
-        audioSource.PlayOneShot(crashSFX);
+        audioSources[0].Stop();
+        audioSources[0].PlayOneShot(crashSFX);
         playerMovement.enabled = false;
         Invoke("ReloadLevel", reloadTime);
     }
@@ -63,13 +75,13 @@ public class CollisionHandler : MonoBehaviour
 
         isTransitioning = true;
         successBeam.Play();
-        audioSource.PlayOneShot(successSFX);
+        audioSources[0].PlayOneShot(successSFX);
         playerMovement.enabled = false;
         Invoke("LoadNextLevel", reloadTime);
     }
     void OnCollisionEnter(Collision other)
     {
-        if (isTransitioning)
+        if (isTransitioning || !actionKeyHandler.IsCollisionsEnabled())
             return ;
         if (other.gameObject.tag == "Friendly")
             Debug.Log("Friendly!");
