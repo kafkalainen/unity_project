@@ -23,4 +23,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Mean movement.unity
     guid: 3beb8bd32c4267a26805e5e205d77b49
+  - enabled: 1
+    path: Assets/Scenes/Nope, it's on the other side.unity
+    guid: cca63352b06fc06c482bf3111bff851d
+  - enabled: 1
+    path: Assets/Scenes/You won the game.unity
+    guid: 8f7a0d00420217fad865678f05235d4d
   m_configObjects: {}
