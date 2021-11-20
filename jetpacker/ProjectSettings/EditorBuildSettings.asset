@@ -8,10 +8,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/First encounter.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Oh, it's moving.unity
+    guid: a0eea3c865bad3e749e341e623feb92c
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/level2.unity
-    guid: 4bfc5b126de6e82b388bd12090f204bc
+    path: Assets/Scenes/Flapping Ship.unity
+    guid: 336f163bb9e22f74789bed84963149db
+  - enabled: 1
+    path: Assets/Scenes/Mean movement.unity
+    guid: 3beb8bd32c4267a26805e5e205d77b49
   m_configObjects: {}

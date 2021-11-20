@@ -37,10 +37,8 @@ public class CollisionHandler : MonoBehaviour
 
     void LoadLevel(int desiredScene)
     {
-        Debug.Log(SceneManager.sceneCountInBuildSettings);
         if (desiredScene < SceneManager.sceneCountInBuildSettings)
         {
-            Debug.Log(desiredScene);
             SceneManager.LoadScene(desiredScene);
         }
     }
@@ -55,7 +53,6 @@ public class CollisionHandler : MonoBehaviour
     void ReloadLevel()
     {
         int currentScene = SceneManager.GetActiveScene().buildIndex;
-        Debug.Log(currentScene);
         LoadLevel(currentScene);
     }
 
@@ -82,9 +79,7 @@ public class CollisionHandler : MonoBehaviour
     {
         if (isTransitioning || !actionKeyHandler.IsCollisionsEnabled())
             return ;
-        if (other.gameObject.tag == "Friendly")
-            Debug.Log("Friendly!");
-        else if (other.gameObject.tag == "Finish")
+        if (other.gameObject.tag == "Finish")
             StartSuccessSequence();
         else if (other.gameObject.tag == "Untagged")
             StartCrashSequence();
